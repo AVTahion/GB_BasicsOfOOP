@@ -21,5 +21,38 @@ namespace GB_BasicsOfOOP
             }
         }
 
+        /// <summary>
+        /// Метод проверяет есть ли пересечение с линией
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        internal bool IsHit(Line line)
+        {
+            foreach (var p in pList)
+            {
+                if (line.IsHit(p))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Метод проверяет есть ли пересечение с точкой
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        internal bool IsHit(Point p)
+        {
+            foreach (var i in pList)
+            {
+                if (i.IsHit(p))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

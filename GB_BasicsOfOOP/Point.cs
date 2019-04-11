@@ -31,6 +31,9 @@ namespace GB_BasicsOfOOP
             sym = n.sym;
         }
 
+        /// <summary>
+        /// Метод затирает точку в консоле
+        /// </summary>
         internal void Clear()
         {
             sym = ' ';
@@ -63,6 +66,11 @@ namespace GB_BasicsOfOOP
 
         }
 
+        /// <summary>
+        /// Метод проверяет пересечение точек
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         internal bool IsHit(Point food)
         {
             return x == food.x && y == food.y;
@@ -75,11 +83,6 @@ namespace GB_BasicsOfOOP
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
-        }
-
-        public override string ToString()
-        {
-            return x + ", " + y + ", " + sym;
         }
     }
 }

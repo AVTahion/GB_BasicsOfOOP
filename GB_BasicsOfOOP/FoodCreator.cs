@@ -17,10 +17,14 @@ namespace GB_BasicsOfOOP
             this.sym = sym;
         }
 
+        /// <summary>
+        /// Метод создает еду на карте
+        /// </summary>
+        /// <returns></returns>
         internal Point CreateFood()
         {
-            int x = rnd.Next(2, mapWidth);
-            int y = rnd.Next(2, mapHeight);
+            int x = rnd.Next(3, mapWidth);
+            int y = rnd.Next(3, mapHeight);
             return new Point(x, y, sym);
         }
     }

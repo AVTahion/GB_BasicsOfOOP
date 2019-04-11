@@ -11,27 +11,29 @@ namespace GB_BasicsOfOOP
     {
         static void Main(string[] args)
         {
-            Console.SetBufferSize(Console.BufferWidth, 30);
+            int windowWidth = 120;
+            int windowHeight = 30;
+            Console.SetWindowSize(windowWidth, windowHeight);
+            Console.SetBufferSize(windowWidth, windowHeight);
+            Console.CursorVisible = false;
 
-            HorizontalLine hLineTop = new HorizontalLine(0, Console.BufferWidth, 1, '=');
-            hLineTop.Drow();
-            HorizontalLine hLineBottom = new HorizontalLine(0, Console.BufferWidth, 29, '=');
-            hLineBottom.Drow();
-            VerticalLine vLineL = new VerticalLine(0, 0, Console.BufferHeight, '|');
-            vLineL.Drow();
-            VerticalLine vLineR = new VerticalLine(118, 0, Console.BufferHeight, '|');
-            vLineR.Drow();
+            Walls walls = new Walls(windowWidth, windowHeight);
+            walls.Draw();
 
             Point p1 = new Point(4, 5, '#');
             Snake s = new Snake(p1, 4, Directions.RIGHT);
             s.Drow();
 
-            FoodCreator foodCrtr = new FoodCreator(118, 29, '@');
+            FoodCreator foodCrtr = new FoodCreator(windowWidth - 3, windowHeight - 3, '@');
             Point food = foodCrtr.CreateFood();
             food.Draw();
 
             while (true)
             {
+                if (walls.IsHit(s) || s.IsHitTail())
+                {
+                    break;
+                }
                 if (s.Eat(food))
                 {
                     food = foodCrtr.CreateFood();
@@ -46,6 +48,9 @@ namespace GB_BasicsOfOOP
                 }
             }
 
+            Console.SetCursorPosition(55, 15);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("GAME OVER!");
             Console.ReadKey();
         }
     }

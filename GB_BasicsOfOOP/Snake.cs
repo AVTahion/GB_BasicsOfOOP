@@ -22,6 +22,9 @@ namespace GB_BasicsOfOOP
             }
         }
 
+        /// <summary>
+        /// Метод передвигает змею на одну точку
+        /// </summary>
         internal void Move()
         {
             Point sTail = pList.First();
@@ -33,6 +36,10 @@ namespace GB_BasicsOfOOP
             sHead.Draw();
         }
 
+        /// <summary>
+        /// Метод получает точку перед головой змеи
+        /// </summary>
+        /// <returns></returns>
         private Point GetHeadNew()
         {
             Point sHead = pList.Last();
@@ -41,6 +48,10 @@ namespace GB_BasicsOfOOP
             return sHeadNew;
         }
 
+        /// <summary>
+        /// Метод изминения направления движения змеи
+        /// </summary>
+        /// <param name="key"></param>
         internal void ChangeDirection(ConsoleKey key)
         {
             if (key == ConsoleKey.LeftArrow) snakeDrctn = Directions.LEFT;
@@ -49,6 +60,28 @@ namespace GB_BasicsOfOOP
             if (key == ConsoleKey.DownArrow) snakeDrctn = Directions.DOWN;
         }
 
+        /// <summary>
+        /// Метод проверяет пересечение головы змеи с хвостом
+        /// </summary>
+        /// <returns></returns>
+        internal bool IsHitTail()
+        {
+            var head = pList.Last();
+            for (int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Метод "поедания" точки еда
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
         internal bool Eat(Point food)
         {
             Point head = GetHeadNew();
