@@ -31,6 +31,12 @@ namespace GB_BasicsOfOOP
             sym = n.sym;
         }
 
+        internal void Clear()
+        {
+            sym = ' ';
+            Draw();
+        }
+
         /// <summary>
         /// Метод сдвигает координаты точки на заданное расстояние в направлении direction
         /// </summary>
@@ -55,6 +61,11 @@ namespace GB_BasicsOfOOP
                 y = y + offset;
             }
 
+        }
+
+        internal bool IsHit(Point food)
+        {
+            return x == food.x && y == food.y;
         }
 
         /// <summary>
